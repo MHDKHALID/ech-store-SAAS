@@ -46,6 +46,29 @@ document.addEventListener('DOMContentLoaded', function() {
                 renderProducts(currentProducts, 'all-products');
             });
         }
+
+        // Setup search
+        const searchInput = document.getElementById('search-input');
+        if (searchInput) {
+            searchInput.addEventListener('input', debounce(function(e) {
+                const searchTerm = e.target.value.toLowerCase();
+                const allProducts = getAllProducts();
+                
+                currentProducts = allProducts.filter(product => {
+                    return product.name.toLowerCase().includes(searchTerm) ||
+                           product.description.toLowerCase().includes(searchTerm) ||
+                           product.category.toLowerCase().includes(searchTerm);
+                });
+
+                // Apply current sort
+                if (sortSelect && sortSelect.value !== 'default') {
+                    currentProducts = sortProducts(currentProducts, sortSelect.value);
+                }
+
+                renderProducts(currentProducts, 'all-products');
+                updateProductCount(currentProducts.length);
+            }, 300));
+        }
     }
 
     // Smooth scrolling for anchor links

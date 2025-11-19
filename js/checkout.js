@@ -75,15 +75,28 @@ function updateCheckoutSummary() {
 
 // Process checkout
 function processCheckout() {
-    // Generate order ID
-    const orderId = 'TS' + Date.now().toString().slice(-8);
+    // Show loading state
+    const submitBtn = document.querySelector('#checkout-form button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+    submitBtn.disabled = true;
     
-    // Show success modal
-    showSuccessModal(orderId);
-    
-    // Clear cart
-    cart = [];
-    saveCart();
+    // Simulate payment processing
+    setTimeout(() => {
+        // Generate order ID
+        const orderId = 'TS' + Date.now().toString().slice(-8);
+        
+        // Show success modal
+        showSuccessModal(orderId);
+        
+        // Clear cart
+        cart = [];
+        saveCart();
+        
+        // Reset button
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+    }, 1500);
 }
 
 // Show success modal

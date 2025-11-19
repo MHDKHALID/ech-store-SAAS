@@ -100,24 +100,41 @@ function renderCart() {
 
     cartContainer.innerHTML = cart.map(item => `
         <div class="cart-item">
-            <div class="cart-item-image">${item.icon}</div>
+            <div class="cart-item-image">
+                ${item.image ? `<img src="${item.image}" alt="${item.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">` : `<i class="fas fa-${getCategoryIcon(item.category)}" style="font-size: 2.5rem; color: var(--primary-color);"></i>`}
+            </div>
             <div class="cart-item-details">
                 <h3>${item.name}</h3>
-                <p>${item.description}</p>
+                <p class="product-category">${item.category}</p>
                 <div class="quantity-controls">
-                    <button class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
+                    <button class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">
+                        <i class="fas fa-minus"></i>
+                    </button>
                     <span class="quantity">${item.quantity}</span>
-                    <button class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+                    <button class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">
+                        <i class="fas fa-plus"></i>
+                    </button>
                 </div>
             </div>
             <div class="cart-item-actions">
                 <div class="cart-item-price">$${(item.price * item.quantity).toFixed(2)}</div>
-                <button class="remove-btn" onclick="removeFromCart(${item.id})">
+                <button class="remove-btn" onclick="removeFromCart(${item.id})" title="Remove item">
                     <i class="fas fa-trash"></i>
                 </button>
             </div>
         </div>
     `).join('');
+
+// Helper function for category icons
+function getCategoryIcon(category) {
+    const icons = {
+        laptops: 'laptop',
+        smartphones: 'mobile-alt',
+        tablets: 'tablet-alt',
+        accessories: 'headphones'
+    };
+    return icons[category] || 'box';
+}
 
     updateCartSummary();
 }
@@ -139,57 +156,15 @@ function updateCartSummary() {
     if (elements.total) elements.total.textContent = `$${totals.total}`;
 }
 
-// Show notification
+// Show notification (using Toast from utils.js)
 function showNotification(message) {
-    // Create notification element
-    const notification = document.createElement('div');
-    notification.style.cssText = `
-        position: fixed;
-        top: 100px;
-        right: 20px;
-        background: #10b981;
-        color: white;
-        padding: 1rem 2rem;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        z-index: 9999;
-        animation: slideInRight 0.3s ease;
-    `;
-    notification.textContent = message;
-    document.body.appendChild(notification);
-
-    // Remove after 3 seconds
-    setTimeout(() => {
-        notification.style.animation = 'slideOutRight 0.3s ease';
-        setTimeout(() => notification.remove(), 300);
-    }, 3000);
+    if (typeof Toast !== 'undefined') {
+        Toast.success(message);
+    } else {
+        // Fallback if Toast is not available
+        alert(message);
+    }
 }
-
-// Add animation styles
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes slideInRight {
-        from {
-            transform: translateX(400px);
-            opacity: 0;
-        }
-        to {
-            transform: translateX(0);
-            opacity: 1;
-        }
-    }
-    @keyframes slideOutRight {
-        from {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        to {
-            transform: translateX(400px);
-            opacity: 0;
-        }
-    }
-`;
-document.head.appendChild(style);
 
 // Initialize cart on page load
 document.addEventListener('DOMContentLoaded', function() {
