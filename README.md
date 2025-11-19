@@ -6,12 +6,12 @@
 
 [![Version](https://img.shields.io/badge/Version-2.0.0-6366f1.svg?style=for-the-badge)](https://github.com/MHDKHALID/ech-store-SAAS)
 [![License](https://img.shields.io/badge/License-MIT-10b981.svg?style=for-the-badge)](LICENSE)
-[![Live Demo](https://img.shields.io/badge/Live-Demo-f59e0b.svg?style=for-the-badge)](https://mhdkhalid.github.io/ech-store-SAAS/)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-f59e0b.svg?style=for-the-badge)](https://ech-store-saas-bxdt.vercel.app/)
 [![GitHub Stars](https://img.shields.io/github/stars/MHDKHALID/ech-store-SAAS?style=for-the-badge&color=764ba2)](https://github.com/MHDKHALID/ech-store-SAAS/stargazers)
 
 **A sophisticated, fully-responsive e-commerce platform showcasing modern web development techniques with enterprise-grade UI/UX design.**
 
-[View Demo](https://mhdkhalid.github.io/ech-store-SAAS/) · [Report Bug](https://github.com/MHDKHALID/ech-store-SAAS/issues) · [Request Feature](https://github.com/MHDKHALID/ech-store-SAAS/issues)
+[View Demo](https://ech-store-saas-bxdt.vercel.app/) · [Report Bug](https://github.com/MHDKHALID/ech-store-SAAS/issues) · [Request Feature](https://github.com/MHDKHALID/ech-store-SAAS/issues)
 
 </div>
 
@@ -146,7 +146,7 @@
 
 ## 🌐 Live Demo
 
-Experience TechStore in action: **[https://mhdkhalid.github.io/ech-store-SAAS/](https://mhdkhalid.github.io/ech-store-SAAS/)**
+Experience TechStore in action: **[https://ech-store-saas-bxdt.vercel.app/](https://ech-store-saas-bxdt.vercel.app/)**
 
 ### Quick Preview
 - 🏠 **Homepage**: Hero section, featured products, categories
